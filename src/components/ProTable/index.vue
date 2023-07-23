@@ -53,8 +53,9 @@
         </el-table-column>
         <!-- other -->
         <TableColumn v-if="!item.type && item.prop && item.isShow" :column="item">
-          <template v-for="slot in Object.keys($slots)" #[slot]="scope">
-            <slot :name="slot" v-bind="scope"></slot>
+          <!-- 以列配置的字段prop为名的插槽存在时，渲染该插槽 -->
+          <template v-if="$slots[handleProp(item.prop!)]" #[handleProp(item.prop!)]="scope">
+            <slot :name="handleProp(item.prop!)" v-bind="scope"></slot>
           </template>
         </TableColumn>
       </template>

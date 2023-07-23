@@ -36,15 +36,15 @@ const RenderTableColumn = (item: ColumnProps) => {
         >
           {{
             default: (scope: RenderScope<any>) => {
-              if (item._children) return item._children.map(child => RenderTableColumn(child));
-              if (item.render) return item.render(scope);
-              if (slots[handleProp(item.prop!)]) return slots[handleProp(item.prop!)]!(scope);
-              if (item.tag) return <el-tag type={getTagType(item, scope)}>{renderCellData(item, scope)}</el-tag>;
-              return renderCellData(item, scope);
+              if (item._children) return item._children.map(child => RenderTableColumn(child)); // 渲染多级表头
+              if (item.render) return item.render(scope); //  渲染函数
+              if (slots[handleProp(item.prop!)]) return slots[handleProp(item.prop!)]!(scope); //  渲染插槽
+              if (item.tag) return <el-tag type={getTagType(item, scope)}>{renderCellData(item, scope)}</el-tag>; // 渲染标签
+              return renderCellData(item, scope); // 渲染表格数据
             },
             header: (scope: HeaderRenderScope<any>) => {
-              if (item.headerRender) return item.headerRender(scope);
-              if (slots[`${handleProp(item.prop!)}Header`]) return slots[`${handleProp(item.prop!)}Header`]!(scope);
+              if (item.headerRender) return item.headerRender(scope); //渲染表头函数
+              if (slots[`${handleProp(item.prop!)}Header`]) return slots[`${handleProp(item.prop!)}Header`]!(scope); // 如果存在该字段的表头插槽，渲染插槽
               return item.label;
             }
           }}

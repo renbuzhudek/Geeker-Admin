@@ -28,7 +28,7 @@ import { handleProp } from "@/utils";
 import { ColumnProps } from "@/components/ProTable/interface";
 
 interface SearchFormItem {
-  column: ColumnProps;
+  column: ColumnProps; // 表格列的数据对象
   searchParam: { [key: string]: any };
 }
 const props = defineProps<SearchFormItem>();
