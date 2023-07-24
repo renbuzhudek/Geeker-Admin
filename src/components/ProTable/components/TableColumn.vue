@@ -20,7 +20,7 @@ const renderCellData = (item: ColumnProps, scope: RenderScope<any>) => {
     : formatValue(handleRowAccordingToProp(scope.row, item.prop!));
 };
 
-// 获取 tag 类型
+// 获取 tag 类型 filterEnum函数过滤tag类型，根据 字典的 tagType 参数获取当前单元格的tag类型。
 const getTagType = (item: ColumnProps, scope: RenderScope<any>) => {
   return filterEnum(handleRowAccordingToProp(scope.row, item.prop!), enumMap.value.get(item.prop), item.fieldNames, "tag");
 };
